@@ -1,3 +1,5 @@
+import { daysBetweenDueDate } from "./dates";
+import { date } from "./dates";
 // set up empty array to hold tasks
 export let taskArray = [];
 
@@ -11,13 +13,12 @@ export class Task {
         this.priority = priority;
         this.listName = listName;
         this.completed = false
-        this.id = id
-        
+        this.id = id       
 
     }
     get dateDifference() {
-        console.log(differenceInDays(this.dueDate,date));
-        return differenceInDays(this.dueDate,date)
+        console.log(daysBetweenDueDate(this.dueDate,date));
+        return daysBetweenDueDate(this.dueDate,date)
     }
     completeTask() {
         this.completed = true;

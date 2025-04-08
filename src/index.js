@@ -9,3 +9,6 @@ import { uncompleteTask } from "./tasks";
 
 addNewTask("testname","test description", "2025-03-25", "High", "My Tasks")
 console.log(taskArray);
+
+completeTask(taskArray[0].id);
+console.log(taskArray);
