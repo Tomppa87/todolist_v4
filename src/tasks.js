@@ -78,3 +78,9 @@ export function completeTask(id) {
 export function uncompleteTask(id) {
     taskArray[findId(id)].uncompleteTask();
 };
+
+export function filterTasks(listName) {
+    let filteredTasks = taskArray.filter((task) => task.listName === listName)
+    console.log(filteredTasks);
+    return filteredTasks;
+}
