@@ -80,7 +80,11 @@ export function uncompleteTask(id) {
 };
 
 export function filterTasks(listName) {
-    let filteredTasks = taskArray.filter((task) => task.listName === listName)
-    console.log(filteredTasks);
-    return filteredTasks;
+    if (listName === "My Tasks" || listName === undefined) {
+        return taskArray;
+    }
+    else {
+        let filteredTasks = taskArray.filter((task) => task.listName === listName)
+        return filteredTasks;
+    };    
 }

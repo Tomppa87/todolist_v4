@@ -16,4 +16,4 @@ console.log(taskArray);
 completeTask(taskArray[0].id);
 console.log(taskArray);
 
-filterTasks("School Stuff");
+filterTasks();
