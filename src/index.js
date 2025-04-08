@@ -6,6 +6,7 @@ import { deleteTask } from "./tasks";
 import { completeTask } from "./tasks";
 import { uncompleteTask } from "./tasks";
 import { filterTasks } from "./tasks";
+import { updateDOM } from "./dom";
 
 
 addNewTask("testname","test description", "2025-03-25", "High", "My Tasks")
@@ -17,3 +18,4 @@ completeTask(taskArray[0].id);
 console.log(taskArray);
 
 filterTasks();
+updateDOM();
