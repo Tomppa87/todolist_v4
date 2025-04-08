@@ -11,6 +11,7 @@ export function updateDOM(filter) {
     let filteredTasks = filterTasks(filter);
     for (let i = 0; i < filteredTasks.length; i++) {
         const taskCard = document.createElement("div")
+        taskCard.classList.add("taskCard")
         for (let prop in filteredTasks[i]) {
             let taskCardProperty = document.createElement("span");
             taskCardProperty.classList.add(prop)
