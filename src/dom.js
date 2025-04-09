@@ -1,6 +1,6 @@
 import { filterTasks } from "./tasks";
+import { taskUrgency } from "./dates";
 const content = document.getElementById("content");
-const contentHead = document.getElementById("contentHead");
 
 function clearDOM() {
   while (content.childElementCount > 1) {
@@ -17,15 +17,15 @@ export function updateDOM(filter) {
       let taskCardProperty = document.createElement("span");
       taskCardProperty.classList.add(prop);
       if (prop === "dueDate") {
-        let taskCardText = document.createTextNode(
-          "Due date: " + filteredTasks[i][prop],
-        );
-        taskCardProperty.appendChild(taskCardText);
-        taskCard.appendChild(taskCardProperty);
-      } else if (prop === "priority") {
-        let taskCardText = document.createTextNode(
-          "Priority: " + filteredTasks[i][prop],
-        );
+        if (filteredTasks[i].dateDifference < taskUrgency.high) {
+          taskCardProperty.classList.add("highUrgency");
+        } else if (filteredTasks[i].dateDifference > taskUrgency.medium) {
+          console.log("low");
+          taskCardProperty.classList.add("lowUrgency");
+        } else {
+          taskCardProperty.classList.add("mediumUrgency");
+        }
+        let taskCardText = document.createTextNode(filteredTasks[i][prop]);
         taskCardProperty.appendChild(taskCardText);
         taskCard.appendChild(taskCardProperty);
       } else {
@@ -37,5 +37,4 @@ export function updateDOM(filter) {
     }
     content.appendChild(taskCard);
   }
-  console.log(content.childElementCount)
 }
