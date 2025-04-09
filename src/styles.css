@@ -1,7 +1,16 @@
 body {
   background-color: rebeccapurple;
 }
+#container {
+  display: grid;
+  grid-template-columns: 25% 75%;
+}
 
 .taskCard {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  
+}
+.taskCard > * {
+  border: 1px, solid, black;
 }
