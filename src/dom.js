@@ -16,6 +16,7 @@ export function updateDOM(filter) {
     for (let prop in filteredTasks[i]) {
       let taskCardProperty = document.createElement("span");
       taskCardProperty.classList.add(prop);
+      // adding class based on urgency from taskUrgency object
       if (prop === "dueDate") {
         if (filteredTasks[i].dateDifference < taskUrgency.high) {
           taskCardProperty.classList.add("highUrgency");

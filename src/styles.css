@@ -9,7 +9,17 @@ body {
 .taskCard {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  background-color: antiquewhite;
 }
 .taskCard > * {
   border: 1px, solid, black;
+}
+.highUrgency {
+  background-color: red;
+}
+.mediumUrgency {
+  background-color: yellow;
+}
+.lowUrgency {
+  background-color: green;
 }
