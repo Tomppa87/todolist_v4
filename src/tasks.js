@@ -82,3 +82,12 @@ export function filterTasks(listName) {
     return filteredTasks;
   }
 }
+export function saveTasks() {
+  localStorage.setItem("tasks", JSON.stringify(taskArray))
+}
+export function loadTasks() {
+  const savedTasks = localStorage.getItem("tasks");
+  if (savedTasks) {
+    taskArray = JSON.parse(savedTasks)
+  }
+}
