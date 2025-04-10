@@ -5,18 +5,28 @@ export let taskArray = [];
 
 // class constructor for task creator with edit methods
 export class Task {
-  constructor(title, description, dueDate, priority, listName, id) {
+  constructor(title, description, dueDate, priority, listName, completed, id) {
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
     this.priority = priority;
     this.listName = listName;
-    this.completed = false;
+    this.completed = completed;
     this.id = id;
   }
-  get dateDifference() {
-    console.log(daysBetweenDueDate(this.dueDate, date));
+  get dateDifference() {    
     return daysBetweenDueDate(this.dueDate, date);
+  }
+  toJSON() {
+    return {
+      title: this.title,
+      description: this.description,
+      dueDate: this.dueDate,
+      priority: this.priority,
+      listName: this.listName,
+      completed: this.completed,
+      id: this.id,
+    }
   }
   completeTask() {
     this.completed = true;
@@ -33,10 +43,12 @@ export class Task {
   }
 }
 
-export function addNewTask(title, description, dueDate, priority, listName) {
+export function addNewTask(title, description, dueDate, priority, listName, completed = false) {
   let id = generateId();
-  let newTask = new Task(title, description, dueDate, priority, listName, id);
+  let newTask = new Task(title, description, dueDate, priority, listName, completed, id);
   taskArray.push(newTask);
+  saveTasks();
+  loadTasks();
 }
 // function to generate unique id for each task
 function generateId() {
@@ -66,12 +78,18 @@ function findId(id) {
 
 export function deleteTask(id) {
   taskArray.splice(findId(id), 1);
+  saveTasks();
+  loadTasks();
 }
 export function completeTask(id) {
   taskArray[findId(id)].completeTask();
+  saveTasks();
+  loadTasks();
 }
 export function uncompleteTask(id) {
   taskArray[findId(id)].uncompleteTask();
+  saveTasks();
+  loadTasks();
 }
 
 export function filterTasks(listName) {
@@ -87,7 +105,11 @@ export function saveTasks() {
 }
 export function loadTasks() {
   const savedTasks = localStorage.getItem("tasks");
+  const parsedTasks = JSON.parse(savedTasks);
   if (savedTasks) {
-    taskArray = JSON.parse(savedTasks)
+    const restoredTasks = parsedTasks.map(taskdata =>
+      new Task(taskdata.title, taskdata.description, taskdata.dueDate, taskdata.priority,taskdata.listName,taskdata.completed,taskdata.id)
+    )
+    taskArray = restoredTasks
   }
 }

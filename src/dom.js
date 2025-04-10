@@ -21,7 +21,6 @@ export function updateDOM(filter) {
         if (filteredTasks[i].dateDifference < taskUrgency.high) {
           taskCardProperty.classList.add("highUrgency");
         } else if (filteredTasks[i].dateDifference > taskUrgency.medium) {
-          console.log("low");
           taskCardProperty.classList.add("lowUrgency");
         } else {
           taskCardProperty.classList.add("mediumUrgency");
