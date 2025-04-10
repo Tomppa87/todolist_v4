@@ -38,3 +38,14 @@ export function updateDOM(filter) {
     content.appendChild(taskCard);
   }
 }
+// create new task button functionality
+const createTaskBtn = document.getElementById("createNewTaskhtml");
+const dialog = document.getElementById("dialogFormTask");
+const cancelTaskBtn = document.getElementById("cancelTaskBtn");
+createTaskBtn.addEventListener("click", () => {
+  dialog.showModal();
+});
+cancelTaskBtn.addEventListener("click", () => {
+  console.log("hello")
+  dialog.close();
+})
