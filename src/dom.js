@@ -1,4 +1,4 @@
-import { filterTasks } from "./tasks";
+import { completeTask, deleteTask, filterTasks } from "./tasks";
 import { taskUrgency } from "./dates";
 const content = document.getElementById("content");
 
@@ -52,6 +52,7 @@ export function updateDOM(filter) {
     completeBtn.id = "completeBtn";
     completeBtn.addEventListener("click", function(e) {
     console.log(index)
+    completeTask(index)
       
     });
     let removeBtn = document.createElement("button") 
@@ -59,6 +60,7 @@ export function updateDOM(filter) {
     removeBtn.id = "removeBtn"
     removeBtn.addEventListener("click", function(e) {
     console.log(index)
+    deleteTask(index)
       //removeTask(index)
     });
     cardBtns.append(editBtn, completeBtn, removeBtn)
@@ -70,10 +72,15 @@ export function updateDOM(filter) {
 const createTaskBtn = document.getElementById("createNewTaskhtml");
 const dialog = document.getElementById("dialogFormTask");
 const cancelTaskBtn = document.getElementById("cancelTaskBtn");
+const newTaskBtn = document.getElementById("newTaskBtn")
 createTaskBtn.addEventListener("click", () => {
   dialog.showModal();
 });
 cancelTaskBtn.addEventListener("click", () => {
-  console.log("hello")
+  dialog.close();
+})
+newTaskBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  console.log("hello");
   dialog.close();
 })
