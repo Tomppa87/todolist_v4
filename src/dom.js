@@ -28,13 +28,41 @@ export function updateDOM(filter) {
         let taskCardText = document.createTextNode(filteredTasks[i][prop]);
         taskCardProperty.appendChild(taskCardText);
         taskCard.appendChild(taskCardProperty);
+      } else if (prop === "Status") {
+        const completeTaskBtn = document.createElement("button")
       } else {
         let taskCardText = document.createTextNode(filteredTasks[i][prop]);
         taskCardProperty.appendChild(taskCardText);
 
         taskCard.appendChild(taskCardProperty);
       }
-    }
+    } 
+    // create edit, remove and complete buttons
+    const index = filteredTasks[i].id
+    const cardBtns = document.createElement("div");
+    let editBtn = document.createElement("button"); 
+    editBtn.innerHTML = "Edit"
+    editBtn.id = "editBtn";
+    editBtn.addEventListener("click", function(e) {
+    console.log(index)
+    
+    });
+    let completeBtn = document.createElement("button");
+    completeBtn.innerHTML = "Complete"
+    completeBtn.id = "completeBtn";
+    completeBtn.addEventListener("click", function(e) {
+    console.log(index)
+      
+    });
+    let removeBtn = document.createElement("button") 
+    removeBtn.innerHTML = "Delete";
+    removeBtn.id = "removeBtn"
+    removeBtn.addEventListener("click", function(e) {
+    console.log(index)
+      //removeTask(index)
+    });
+    cardBtns.append(editBtn, completeBtn, removeBtn)
+    taskCard.appendChild(cardBtns)
     content.appendChild(taskCard);
   }
 }
