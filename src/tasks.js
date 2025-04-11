@@ -43,7 +43,7 @@ export class Task {
   }
 }
 
-export function addNewTask(title, description, dueDate, priority, listName, completed = false) {
+export function addNewTask(title, description, dueDate, priority, listName = "My Tasks", completed = false) {
   let id = generateId();
   let newTask = new Task(title, description, dueDate, priority, listName, completed, id);
   taskArray.push(newTask);

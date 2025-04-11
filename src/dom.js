@@ -1,4 +1,4 @@
-import { completeTask, deleteTask, filterTasks } from "./tasks";
+import { completeTask, deleteTask, filterTasks, addNewTask } from "./tasks";
 import { taskUrgency } from "./dates";
 const content = document.getElementById("content");
 
@@ -68,19 +68,41 @@ export function updateDOM(filter) {
     content.appendChild(taskCard);
   }
 }
-// create new task button functionality
+//define dialog elements
 const createTaskBtn = document.getElementById("createNewTaskhtml");
 const dialog = document.getElementById("dialogFormTask");
 const cancelTaskBtn = document.getElementById("cancelTaskBtn");
-const newTaskBtn = document.getElementById("newTaskBtn")
-createTaskBtn.addEventListener("click", () => {
+const newTaskBtn = document.getElementById("newTaskBtn");
+// create new task button functionality
+createTaskBtn.addEventListener("click", (e) => {
   dialog.showModal();
 });
 cancelTaskBtn.addEventListener("click", () => {
   dialog.close();
 })
+export function getRadioButtonValue() {
+  if (document.getElementById("priorityHigh").checked) {
+      return "High"
+  }    
+  else if (document.getElementById("priorityMedium").checked) {
+      return "Medium"
+  }
+  else if (document.getElementById("priorityLow").checked) {
+      return "Low"
+  }
+  else {
+      return "None"
+  }
+}
 newTaskBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  console.log("hello");
+  const newTaskTitle = document.getElementById("title").value
+  const newTaskDescription = document.getElementById("description").value
+  const newTaskDate = document.getElementById("dueDate").value
+  const newTaskListName = document.getElementById("to_do_list").value
+  console.log("hello")
+  console.log(getRadioButtonValue());
+  addNewTask(newTaskTitle, newTaskDescription, newTaskDate, getRadioButtonValue(), )
+  updateDOM();
   dialog.close();
 })

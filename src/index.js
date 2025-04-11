@@ -7,7 +7,7 @@ import { completeTask } from "./tasks";
 import { uncompleteTask } from "./tasks";
 import { filterTasks } from "./tasks";
 import { loadTasks } from "./tasks";
-import { updateDOM } from "./dom";
+import { updateDOM, getRadioButtonValue } from "./dom";
 
 loadTasks();
 /*addNewTask("testname", "test description", "2025-03-25", "High","My Tasks");
