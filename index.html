@@ -12,11 +12,14 @@
     <div id="container">
       <div id="sidebar">
         <div id="createNewTaskhtml">Create New Task
+          
+        </div>
+        <div>
           <dialog id="dialogFormTask">
             <form id="newTaskForm" class="hide form newTask" method="dialog">
                 <p>
                     <label for="title">Task</label>
-                    <input type="text" name="task_title" id="title">
+                    <input type="text" required name="task_title" id="title">
                 </p>
                 <p>
                     <label for="description">Description</label>
@@ -48,13 +51,11 @@
                     <select name="to-do-list" id="to_do_list">
                     </select>
                 </p>
-                <p>
-                    <button id="newTaskBtn" type="submit">Create New Task</button>
+                    <input id="newTaskBtn" type="submit" value="Create New Task">
+                    
                     <button id="resetTaskBtn" type="reset">Reset</button>
                     <button id="cancelTaskBtn">Cancel</button>
-                </p>
-               
-            </form>
+                </form>
         </dialog>
         </div>
       </div>
