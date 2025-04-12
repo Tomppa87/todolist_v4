@@ -1,4 +1,4 @@
-import { completeTask, deleteTask, filterTasks, addNewTask } from "./tasks";
+import { completeTask, deleteTask, filterTasks, addNewTask, uncompleteTask } from "./tasks";
 import { taskUrgency } from "./dates";
 const content = document.getElementById("content");
 
@@ -48,26 +48,38 @@ export function updateDOM(filter) {
     
     });
     let completeBtn = document.createElement("button");
-    completeBtn.innerHTML = "Complete"
     completeBtn.id = "completeBtn";
+    let status = filteredTasks[i].completed;
+    if (status === true) {
+      completeBtn.innerHTML = "Revert Completion";      
+    } else {
+      completeBtn.innerHTML = "Complete";           
+    };
     completeBtn.addEventListener("click", function(e) {
-    console.log(index)
-    completeTask(index)
-      
-    });
+      if (status) {
+        uncompleteTask(index);
+        updateDOM();
+      } else {
+        completeTask(index);
+        updateDOM();
+      };
+  });
+  
     let removeBtn = document.createElement("button") 
     removeBtn.innerHTML = "Delete";
     removeBtn.id = "removeBtn"
     removeBtn.addEventListener("click", function(e) {
     console.log(index)
-    deleteTask(index)
-      //removeTask(index)
+    deleteTask(index);
+    updateDOM();
     });
+
     cardBtns.append(editBtn, completeBtn, removeBtn)
     taskCard.appendChild(cardBtns)
     content.appendChild(taskCard);
-  }
-}
+  };
+};
+
 //define dialog elements
 const createTaskBtn = document.getElementById("createNewTaskhtml");
 const dialog = document.getElementById("dialogFormTask");
