@@ -14,6 +14,10 @@ body {
 .taskCard > * {
   border: 1px, solid, black;
 }
+.taskCard > *:hover {
+  background-color:darkgoldenrod;
+  opacity: 0.7;
+}
 .highUrgency {
   background-color: red;
 }
@@ -23,4 +27,18 @@ body {
 .lowUrgency {
   background-color: green;
 }
-
+input:invalid {
+  border:solid 1px red;
+}
+input:valid {
+  border:solid 1px green;
+}
+.sidebarOption {
+  background-color: bisque;
+  border-bottom: 1px solid black;
+  margin: 5px 15px;
+  text-align: center;
+}
+.sidebarOption:hover {
+  opacity: 0.5;
+}

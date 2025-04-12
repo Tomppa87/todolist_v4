@@ -21,7 +21,7 @@ addNewTask(
 
 saveTasks();*/
 //loadTasks();
-completeTask(taskArray[0].id)
+completeTask(taskArray[0].id);
 console.log(taskArray);
 filterTasks();
 updateDOM();

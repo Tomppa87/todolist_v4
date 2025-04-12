@@ -1,4 +1,10 @@
-import { completeTask, deleteTask, filterTasks, addNewTask, uncompleteTask } from "./tasks";
+import {
+  completeTask,
+  deleteTask,
+  filterTasks,
+  addNewTask,
+  uncompleteTask,
+} from "./tasks";
 import { taskUrgency } from "./dates";
 const content = document.getElementById("content");
 
@@ -29,60 +35,60 @@ export function updateDOM(filter) {
         taskCardProperty.appendChild(taskCardText);
         taskCard.appendChild(taskCardProperty);
       } else if (prop === "Status") {
-        const completeTaskBtn = document.createElement("button")
+        const completeTaskBtn = document.createElement("button");
       } else {
         let taskCardText = document.createTextNode(filteredTasks[i][prop]);
         taskCardProperty.appendChild(taskCardText);
 
         taskCard.appendChild(taskCardProperty);
       }
-    } 
+    }
     // create edit, remove and complete buttons
-    const index = filteredTasks[i].id
+    const index = filteredTasks[i].id;
     const cardBtns = document.createElement("div");
-    let editBtn = document.createElement("button"); 
-    editBtn.innerHTML = "Edit"
+    let editBtn = document.createElement("button");
+    editBtn.innerHTML = "Edit";
     editBtn.id = "editBtn";
-    editBtn.addEventListener("click", function(e) {
-    console.log(index)
-    
+    editBtn.addEventListener("click", function (e) {
+      console.log(index);
     });
     let completeBtn = document.createElement("button");
     completeBtn.id = "completeBtn";
     let status = filteredTasks[i].completed;
     if (status === true) {
-      completeBtn.innerHTML = "Revert Completion";      
+      completeBtn.innerHTML = "Revert Completion";
     } else {
-      completeBtn.innerHTML = "Complete";           
-    };
-    completeBtn.addEventListener("click", function(e) {
+      completeBtn.innerHTML = "Complete";
+    }
+    completeBtn.addEventListener("click", function (e) {
       if (status) {
         uncompleteTask(index);
         updateDOM();
       } else {
         completeTask(index);
         updateDOM();
-      };
-  });
-  
-    let removeBtn = document.createElement("button") 
-    removeBtn.innerHTML = "Delete";
-    removeBtn.id = "removeBtn"
-    removeBtn.addEventListener("click", function(e) {
-    console.log(index)
-    deleteTask(index);
-    updateDOM();
+      }
     });
 
-    cardBtns.append(editBtn, completeBtn, removeBtn)
-    taskCard.appendChild(cardBtns)
+    let removeBtn = document.createElement("button");
+    removeBtn.innerHTML = "Delete";
+    removeBtn.id = "removeBtn";
+    removeBtn.addEventListener("click", function (e) {
+      console.log(index);
+      deleteTask(index);
+      updateDOM();
+    });
+
+    cardBtns.append(editBtn, completeBtn, removeBtn);
+    taskCard.appendChild(cardBtns);
     content.appendChild(taskCard);
-  };
-};
+  }
+}
 
 //define dialog elements
 const createTaskBtn = document.getElementById("createNewTaskhtml");
 const dialog = document.getElementById("dialogFormTask");
+const form = document.getElementById("newTaskForm")
 const cancelTaskBtn = document.getElementById("cancelTaskBtn");
 const newTaskBtn = document.getElementById("newTaskBtn");
 // create new task button functionality
@@ -91,30 +97,30 @@ createTaskBtn.addEventListener("click", (e) => {
 });
 cancelTaskBtn.addEventListener("click", () => {
   dialog.close();
-})
+});
 export function getRadioButtonValue() {
   if (document.getElementById("priorityHigh").checked) {
-      return "High"
-  }    
-  else if (document.getElementById("priorityMedium").checked) {
-      return "Medium"
-  }
-  else if (document.getElementById("priorityLow").checked) {
-      return "Low"
-  }
-  else {
-      return "None"
+    return "High";
+  } else if (document.getElementById("priorityMedium").checked) {
+    return "Medium";
+  } else if (document.getElementById("priorityLow").checked) {
+    return "Low";
+  } else {
+    return "None";
   }
 }
-newTaskBtn.addEventListener("click", (e) => {
+// define form inputs for validation purposes
+const newTaskTitle = document.getElementById("title");
+const newTaskDescription = document.getElementById("description");
+const newTaskDate = document.getElementById("dueDate")
+form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const newTaskTitle = document.getElementById("title").value
-  const newTaskDescription = document.getElementById("description").value
-  const newTaskDate = document.getElementById("dueDate").value
-  const newTaskListName = document.getElementById("to_do_list").value
-  console.log("hello")
-  console.log(getRadioButtonValue());
-  addNewTask(newTaskTitle, newTaskDescription, newTaskDate, getRadioButtonValue(), )
+  addNewTask(
+    newTaskTitle.value,
+    newTaskDescription.value,
+    newTaskDate.value,
+    getRadioButtonValue(),
+  );
   updateDOM();
   dialog.close();
 })

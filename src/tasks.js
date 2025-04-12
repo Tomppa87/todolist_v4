@@ -14,7 +14,7 @@ export class Task {
     this.completed = completed;
     this.id = id;
   }
-  get dateDifference() {    
+  get dateDifference() {
     return daysBetweenDueDate(this.dueDate, date);
   }
   toJSON() {
@@ -26,7 +26,7 @@ export class Task {
       listName: this.listName,
       completed: this.completed,
       id: this.id,
-    }
+    };
   }
   completeTask() {
     this.completed = true;
@@ -43,9 +43,24 @@ export class Task {
   }
 }
 
-export function addNewTask(title, description, dueDate, priority, listName = "My Tasks", completed = false) {
+export function addNewTask(
+  title,
+  description,
+  dueDate,
+  priority,
+  listName = "My Tasks",
+  completed = false,
+) {
   let id = generateId();
-  let newTask = new Task(title, description, dueDate, priority, listName, completed, id);
+  let newTask = new Task(
+    title,
+    description,
+    dueDate,
+    priority,
+    listName,
+    completed,
+    id,
+  );
   taskArray.push(newTask);
   saveTasks();
   loadTasks();
@@ -101,15 +116,24 @@ export function filterTasks(listName) {
   }
 }
 export function saveTasks() {
-  localStorage.setItem("tasks", JSON.stringify(taskArray))
+  localStorage.setItem("tasks", JSON.stringify(taskArray));
 }
 export function loadTasks() {
   const savedTasks = localStorage.getItem("tasks");
   const parsedTasks = JSON.parse(savedTasks);
   if (savedTasks) {
-    const restoredTasks = parsedTasks.map(taskdata =>
-      new Task(taskdata.title, taskdata.description, taskdata.dueDate, taskdata.priority,taskdata.listName,taskdata.completed,taskdata.id)
-    )
-    taskArray = restoredTasks
+    const restoredTasks = parsedTasks.map(
+      (taskdata) =>
+        new Task(
+          taskdata.title,
+          taskdata.description,
+          taskdata.dueDate,
+          taskdata.priority,
+          taskdata.listName,
+          taskdata.completed,
+          taskdata.id,
+        ),
+    );
+    taskArray = restoredTasks;
   }
 }

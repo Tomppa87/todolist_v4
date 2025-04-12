@@ -18,30 +18,31 @@
           <dialog id="dialogFormTask">
             <form id="newTaskForm" class="hide form newTask" method="dialog">
                 <p>
-                    <label for="title">Task</label>
-                    <input type="text" required name="task_title" id="title">
+                    <label for="title">Task *</label>
+                    <input type="text" required minlength="1" name="task_title" id="title">;
+                    
                 </p>
                 <p>
                     <label for="description">Description</label>
                     <input type="text" name="description" id="description">
                 </p>
                 <p>
-                    <label for="dueDate">Due Date</label>
-                    <input type="date" name="dueDate" id="dueDate">
+                    <label for="dueDate">Due Date *</label>
+                    <input type="date" required name="dueDate" id="dueDate">
                 </p>
                 <p>
                     <fieldset>
-                       <legend>Priority</legend> 
+                       <legend>Priority *</legend> 
                        <div>
-                        <input type="radio" name="radio" id="priorityHigh">
+                        <input type="radio" required name="radio" id="priorityHigh">
                         <label for="priorityHigh">High</label>
                        </div>
                        <div>
-                        <input type="radio" name="radio" id="priorityMedium">
+                        <input type="radio" required name="radio" id="priorityMedium">
                         <label for="priorityMedium">Medium</label>
                        </div>
                        <div>
-                        <input type="radio" name="radio" id="priorityLow">
+                        <input type="radio" required name="radio" id="priorityLow">
                         <label for="priorityLow">Low</label>
                        </div>                               
                     </fieldset>                            
@@ -51,11 +52,11 @@
                     <select name="to-do-list" id="to_do_list">
                     </select>
                 </p>
-                    <input id="newTaskBtn" type="submit" value="Create New Task">
+                    <input id="newTaskBtn" type="submit" value="New Task"/>
                     
                     <button id="resetTaskBtn" type="reset">Reset</button>
                     <button id="cancelTaskBtn">Cancel</button>
-                </form>
+            </form>
         </dialog>
         </div>
         <div id="taskLists"></div>
