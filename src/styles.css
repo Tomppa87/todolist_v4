@@ -8,11 +8,15 @@ body {
 
 .taskCard {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   background-color: antiquewhite;
 }
 .taskCard > * {
-  border: 1px, solid, black;
+  border: 1px, solid, black;  
+}
+.contentHead {
+  text-align: center;
+  font-weight: 600;
 }
 .taskCard > *:hover {
   background-color:darkgoldenrod;
@@ -41,4 +45,10 @@ input:valid {
 }
 .sidebarOption:hover {
   opacity: 0.5;
+}
+.id, .completed {
+  display: none;
+}
+.taskCompleted {
+  text-decoration: line-through;
 }
