@@ -98,11 +98,13 @@ export function deleteTask(id) {
 }
 export function completeTask(id) {
   taskArray[findId(id)].completeTask();
+  taskArray[findId(id)].listName = "Completed Tasks"
   saveTasks();
   loadTasks();
 }
 export function uncompleteTask(id) {
   taskArray[findId(id)].uncompleteTask();
+  taskArray[findId(id)].listName = "My Tasks"
   saveTasks();
   loadTasks();
 }

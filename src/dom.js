@@ -123,4 +123,13 @@ form.addEventListener("submit", (e) => {
   );
   updateDOM();
   dialog.close();
-})
+});
+
+const taskListButtons = document.getElementsByClassName("taskList");
+for ( let i=0; i<taskListButtons.length; i++) {
+  let button = taskListButtons[i];
+  button.addEventListener("click", (e) => {
+    let value = e.target.innerHTML;
+    updateDOM(value);
+  })
+}
