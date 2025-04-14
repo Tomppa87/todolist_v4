@@ -1,25 +1,36 @@
 body {
-  background-color: rebeccapurple;
+  background-color: #F7E1D7;
+}
+#appTitle {
+  text-align: center;
 }
 #container {
   display: grid;
   grid-template-columns: 25% 75%;
+  background-color: #EDAFB8;
+  border-top: 1px solid black;
 }
 
 .taskCard {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  background-color: antiquewhite;
+  background-color: #DEDBD2;
+  text-align: center;
+  
+  
 }
 .taskCard > * {
-  border: 1px, solid, black;  
+  border: 1px, solid, black; 
+  height: 60px; 
+  text-overflow: clip;
+  
 }
 .contentHead {
   text-align: center;
   font-weight: 600;
 }
 .taskCard > *:hover {
-  background-color:darkgoldenrod;
+  background-color:#B0C4B1;
   opacity: 0.7;
 }
 .highUrgency {
@@ -37,14 +48,23 @@ input:invalid {
 input:valid {
   border:solid 1px green;
 }
+#cardBtns {
+  display: flex;
+  width: 250px;
+}
+#cardBtns > * {
+  width: 90px;
+}
+
 .sidebarOption {
-  background-color: bisque;
+  background-color: #DEDBD2;
   border-bottom: 1px solid black;
   margin: 5px 15px;
   text-align: center;
 }
 .sidebarOption:hover {
   opacity: 0.5;
+  cursor: pointer;
 }
 .id, .completed {
   display: none;

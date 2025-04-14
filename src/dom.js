@@ -49,6 +49,7 @@ export function updateDOM(filter) {
     // create edit, remove and complete buttons
     const index = filteredTasks[i].id;
     const cardBtns = document.createElement("div");
+    cardBtns.id = "cardBtns"
     let editBtn = document.createElement("button");
     editBtn.innerHTML = "Edit";
     editBtn.id = "editBtn";
