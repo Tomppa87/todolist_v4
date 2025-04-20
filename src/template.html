@@ -85,6 +85,50 @@
           <span id="cardBtns" class="editbtns"></span>
         </div>
       </div>
+      <div>
+        <dialog id="editTask">
+          <form id="editForm" method="dialog">
+            <p>
+              <label for="editTitle">Task *</label>
+              <input type="text" required minlength="1" name="task_title" id="editTitle">;
+          </p>
+          <p>
+              <label for="editDescription">Description</label>
+              <input type="text" name="description" id="editDescription">
+          </p>
+          <p>
+            <label for="editDueDate">Due Date *</label>
+            <input type="date" required name="dueDate" id="editDueDate">
+        </p>
+        <p>
+          <fieldset>
+             <legend>Priority *</legend> 
+             <div>
+              <input type="radio" required name="radio" id="editPriorityHigh">
+              <label for="priorityHigh">High</label>
+             </div>
+             <div>
+              <input type="radio" required name="radio" id="editPriorityMedium">
+              <label for="priorityMedium">Medium</label>
+             </div>
+             <div>
+              <input type="radio" required name="radio" id="editPriorityLow">
+              <label for="priorityLow">Low</label>
+             </div>                               
+          </fieldset>                            
+      </p>
+      <p>
+        <label for="editTo_do_list">To-Do-List</label>
+        <select name="to-do-list" id="editTo_do_list">
+        </select>
+      </p>
+        <input id="confirmBtn" type="submit" value="Confirm Edit"/>
+        
+        <button id="resetTaskBtn" type="reset">Reset</button>
+        <button id="cancelEdit">Cancel</button>
+          </form>
+        </dialog>
+      </div>
     </div>
   </body>
 </html>

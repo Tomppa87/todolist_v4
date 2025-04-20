@@ -8,9 +8,13 @@ import {
   getTaskLists,
   saveTaskLists,
   taskLists,
+  editTask
 } from "./tasks";
 import { taskUrgency } from "./dates";
 const content = document.getElementById("content");
+const editDialog = document.getElementById("editTask");
+let cancelEdit = document.getElementById("cancelEdit");
+let confirmBtn = document.getElementById("confirmBtn")
 
 function clearDOM() {
   while (content.childElementCount > 1) {
@@ -59,7 +63,39 @@ export function updateDOM(filter) {
     editBtn.innerHTML = "Edit";
     editBtn.id = "editBtn";
     editBtn.addEventListener("click", function (e) {
+      const editTitle = document.getElementById("editTitle");
+      const editDescription = document.getElementById("editDescription");
+      const editDueDate = document.getElementById("editDueDate");
+      const editTo_do_list = document.getElementById("editTo_do_list")
+      function editGetRadioButtonValue() {
+        if (document.getElementById("priorityHigh").checked) {
+          return "High";
+        } else if (document.getElementById("priorityMedium").checked) {
+          return "Medium";
+        } else if (document.getElementById("priorityLow").checked) {
+          return "Low";
+        } else {
+          return "None";
+        }
+      };
+      confirmBtn.addEventListener("click", () => {
+        console.log("Hello");
+        editTask(index, editTitle.value, 
+          editDescription.value, 
+          editDueDate.value, editGetRadioButtonValue(),editTo_do_list.value);
+          updateDOM();
+          editDialog.close();
+          dropDownEmpty();
+      })
+      cancelEdit.addEventListener("click", () => {
+        console.log("Bye");
+        editDialog.close();
+        dropDownEmpty();
+      })
+      populateDropDown()
+      editDialog.showModal();
       console.log(index);
+      //editTask()
     });
     let completeBtn = document.createElement("button");
     completeBtn.id = "completeBtn";
@@ -120,7 +156,8 @@ export function getRadioButtonValue() {
     return "None";
   }
 };
-const select = document.getElementById("to_do_list")
+const select = document.getElementById("to_do_list");
+const editselect = document.getElementById("editTo_do_list")
 function populateDropDown() {
   for (let i=0; i<taskLists.length; i++) {
     let option = taskLists[i];
@@ -128,12 +165,16 @@ function populateDropDown() {
     element.textContent = option;
     element.value = option;
     select.appendChild(element);
+    editselect.appendChild(element)
   };
 };
 function dropDownEmpty() {
   while (select.firstChild) {
       select.removeChild(select.firstChild)
-  }
+  };
+  while (editselect.firstChild) {
+    editselect.removeChild(editselect.firstChild)
+}
 }
 // define form inputs for validation purposes
 const newTaskTitle = document.getElementById("title");
@@ -173,7 +214,7 @@ function updateTaskListDOM() {
     const sidebar = document.createElement("div");
     sidebar.classList.add("sidebarOption");
     sidebar.classList.add("taskList");
-    sidebar.innerHTML = taskLists[0];
+    sidebar.innerHTML = taskLists[i];
     sidebar.addEventListener("click", (e) => {
       let value = e.target.innerHTML;
       updateDOM(value);

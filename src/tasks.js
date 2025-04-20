@@ -158,4 +158,9 @@ export function getTaskLists() {
   if (savedTaskLists) {
     taskLists = parsedTaskLists
   }
+};
+export function removeTaskList(taskList) {
+  let ind = taskLists.indexOf(taskList);
+  taskLists.splice(ind,1);
+  saveTaskLists();
 }
