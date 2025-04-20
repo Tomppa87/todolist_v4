@@ -108,6 +108,11 @@ export function uncompleteTask(id) {
   saveTasks();
   loadTasks();
 }
+export function editTask(id, title, description, dueDate, priority, listName) {
+  taskArray[findId(id)].editTask(title,description, dueDate, priority, listName);  
+  saveTasks();
+  loadTasks();
+}
 
 export function filterTasks(listName) {
   if (listName === "My Tasks" || listName === undefined) {
@@ -138,4 +143,5 @@ export function loadTasks() {
     );
     taskArray = restoredTasks;
   }
-}
+};
+taskLists = [];

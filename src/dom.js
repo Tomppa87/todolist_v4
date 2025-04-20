@@ -136,4 +136,8 @@ for ( let i=0; i<taskListButtons.length; i++) {
     let value = e.target.innerHTML;
     updateDOM(value);
   })
-}
+};
+const createListBtn = document.getElementById("createListBtn")
+createListBtn.addEventListener("click", () => {
+  console.log("Hello")
+})
