@@ -4,7 +4,10 @@ import {
   filterTasks,
   addNewTask,
   uncompleteTask,
-  createTaskList
+  createTaskList,
+  getTaskLists,
+  saveTaskLists,
+  taskLists
 } from "./tasks";
 import { taskUrgency } from "./dates";
 const content = document.getElementById("content");
@@ -16,6 +19,7 @@ function clearDOM() {
 }
 export function updateDOM(filter) {
   clearDOM();
+  updateTaskListDOM()
   let filteredTasks = filterTasks(filter);
   for (let i = 0; i < filteredTasks.length; i++) {
     const taskCard = document.createElement("div");
@@ -140,7 +144,25 @@ for ( let i=0; i<taskListButtons.length; i++) {
 };
 const taskListDialog = document.getElementById("TaskListDialog");
 const taskListBtn = document.getElementById("taskListBtn");
+const taskListDiv = document.getElementById("taskLists");
 
+function updateTaskListDOM() {
+  while (taskListDiv.childElementCount >= 1) {
+    taskListDiv.removeChild(taskListDiv.lastChild);
+  }
+  getTaskLists();
+  for (let i=0; i<taskLists.length; i++) {
+    const sidebar = document.createElement("div");
+    sidebar.classList.add("sidebarOption");
+    sidebar.classList.add("taskList")
+    sidebar.innerHTML = taskLists[0];
+    sidebar.addEventListener("click", (e) => {
+      let value = e.target.innerHTML;
+      updateDOM(value);
+    });
+    taskListDiv.appendChild(sidebar)
+  }
+}
 const createListBtn = document.getElementById("createListBtn")
 createListBtn.addEventListener("click", () => {
   console.log("Hello")
@@ -148,5 +170,6 @@ createListBtn.addEventListener("click", () => {
 });
 taskListBtn.addEventListener("click", () => {
   const taskListInput = document.getElementById("taskListInput");
-  createTaskList(taskListInput);
+  createTaskList(taskListInput.value);
+  updateTaskListDOM();
 })

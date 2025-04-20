@@ -144,7 +144,7 @@ export function loadTasks() {
     taskArray = restoredTasks;
   }
 };
-let taskLists = [];
+export let taskLists = [];
 export function createTaskList(listName) {
   taskLists.push(listName);
   saveTaskLists();
