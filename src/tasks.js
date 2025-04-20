@@ -144,4 +144,18 @@ export function loadTasks() {
     taskArray = restoredTasks;
   }
 };
-taskLists = [];
+let taskLists = [];
+export function createTaskList(listName) {
+  taskLists.push(listName);
+  saveTaskLists();
+}
+export function saveTaskLists() {
+  localStorage.setItem("taskLists", JSON.stringify(taskLists));
+}
+export function getTaskLists() {
+  const savedTaskLists = localStorage.getItem("taskLists");
+  const parsedTaskLists = JSON.parse(savedTaskLists);
+  if (savedTaskLists) {
+    taskLists = parsedTaskLists
+  }
+}

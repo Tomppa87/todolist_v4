@@ -4,6 +4,7 @@ import {
   filterTasks,
   addNewTask,
   uncompleteTask,
+  createTaskList
 } from "./tasks";
 import { taskUrgency } from "./dates";
 const content = document.getElementById("content");
@@ -137,7 +138,15 @@ for ( let i=0; i<taskListButtons.length; i++) {
     updateDOM(value);
   })
 };
+const taskListDialog = document.getElementById("TaskListDialog");
+const taskListBtn = document.getElementById("taskListBtn");
+
 const createListBtn = document.getElementById("createListBtn")
 createListBtn.addEventListener("click", () => {
   console.log("Hello")
+  taskListDialog.showModal();
+});
+taskListBtn.addEventListener("click", () => {
+  const taskListInput = document.getElementById("taskListInput");
+  createTaskList(taskListInput);
 })

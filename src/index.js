@@ -1,5 +1,5 @@
 import "./styles.css";
-import { saveTasks, taskArray } from "./tasks";
+import { saveTasks, taskArray, getTaskLists } from "./tasks";
 import { Task } from "./tasks";
 import { addNewTask } from "./tasks";
 import { deleteTask } from "./tasks";
@@ -10,6 +10,7 @@ import { loadTasks } from "./tasks";
 import { updateDOM, getRadioButtonValue } from "./dom";
 
 loadTasks();
+getTaskLists()
 
 completeTask(taskArray[0].id);
 console.log(taskArray);
