@@ -7,7 +7,7 @@ import {
   createTaskList,
   getTaskLists,
   saveTaskLists,
-  taskLists
+  taskLists,
 } from "./tasks";
 import { taskUrgency } from "./dates";
 const content = document.getElementById("content");
@@ -19,7 +19,7 @@ function clearDOM() {
 }
 export function updateDOM(filter) {
   clearDOM();
-  updateTaskListDOM()
+  updateTaskListDOM();
   let filteredTasks = filterTasks(filter);
   for (let i = 0; i < filteredTasks.length; i++) {
     const taskCard = document.createElement("div");
@@ -54,7 +54,7 @@ export function updateDOM(filter) {
     // create edit, remove and complete buttons
     const index = filteredTasks[i].id;
     const cardBtns = document.createElement("div");
-    cardBtns.id = "cardBtns"
+    cardBtns.id = "cardBtns";
     let editBtn = document.createElement("button");
     editBtn.innerHTML = "Edit";
     editBtn.id = "editBtn";
@@ -97,15 +97,17 @@ export function updateDOM(filter) {
 //define dialog elements
 const createTaskBtn = document.getElementById("createNewTaskhtml");
 const dialog = document.getElementById("dialogFormTask");
-const form = document.getElementById("newTaskForm")
+const form = document.getElementById("newTaskForm");
 const cancelTaskBtn = document.getElementById("cancelTaskBtn");
 const newTaskBtn = document.getElementById("newTaskBtn");
 // create new task button functionality
 createTaskBtn.addEventListener("click", (e) => {
   dialog.showModal();
+  populateDropDown()
 });
 cancelTaskBtn.addEventListener("click", () => {
   dialog.close();
+  dropDownEmpty()
 });
 export function getRadioButtonValue() {
   if (document.getElementById("priorityHigh").checked) {
@@ -117,11 +119,26 @@ export function getRadioButtonValue() {
   } else {
     return "None";
   }
+};
+const select = document.getElementById("to_do_list")
+function populateDropDown() {
+  for (let i=0; i<taskLists.length; i++) {
+    let option = taskLists[i];
+    let element = document.createElement("option");
+    element.textContent = option;
+    element.value = option;
+    select.appendChild(element);
+  };
+};
+function dropDownEmpty() {
+  while (select.firstChild) {
+      select.removeChild(select.firstChild)
+  }
 }
 // define form inputs for validation purposes
 const newTaskTitle = document.getElementById("title");
 const newTaskDescription = document.getElementById("description");
-const newTaskDate = document.getElementById("dueDate")
+const newTaskDate = document.getElementById("dueDate");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   addNewTask(
@@ -131,17 +148,18 @@ form.addEventListener("submit", (e) => {
     getRadioButtonValue(),
   );
   updateDOM();
+  dropDownEmpty();
   dialog.close();
 });
 
 const taskListButtons = document.getElementsByClassName("taskList");
-for ( let i=0; i<taskListButtons.length; i++) {
+for (let i = 0; i < taskListButtons.length; i++) {
   let button = taskListButtons[i];
   button.addEventListener("click", (e) => {
     let value = e.target.innerHTML;
     updateDOM(value);
-  })
-};
+  });
+}
 const taskListDialog = document.getElementById("TaskListDialog");
 const taskListBtn = document.getElementById("taskListBtn");
 const taskListDiv = document.getElementById("taskLists");
@@ -151,25 +169,25 @@ function updateTaskListDOM() {
     taskListDiv.removeChild(taskListDiv.lastChild);
   }
   getTaskLists();
-  for (let i=0; i<taskLists.length; i++) {
+  for (let i = 0; i < taskLists.length; i++) {
     const sidebar = document.createElement("div");
     sidebar.classList.add("sidebarOption");
-    sidebar.classList.add("taskList")
+    sidebar.classList.add("taskList");
     sidebar.innerHTML = taskLists[0];
     sidebar.addEventListener("click", (e) => {
       let value = e.target.innerHTML;
       updateDOM(value);
     });
-    taskListDiv.appendChild(sidebar)
+    taskListDiv.appendChild(sidebar);
   }
 }
-const createListBtn = document.getElementById("createListBtn")
+const createListBtn = document.getElementById("createListBtn");
 createListBtn.addEventListener("click", () => {
-  console.log("Hello")
+  console.log("Hello");
   taskListDialog.showModal();
 });
 taskListBtn.addEventListener("click", () => {
   const taskListInput = document.getElementById("taskListInput");
   createTaskList(taskListInput.value);
   updateTaskListDOM();
-})
+});
